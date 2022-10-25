@@ -50,8 +50,8 @@ class _PopItemListState extends State<PopItemList> {
         height: size.height * 0.35,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 50,
-            //itemCount: myMap["result"]["response"].length,
+            //itemCount: 50,
+            itemCount: myMap["result"]["response"].length,
             itemBuilder: (context, index) {
               Product product = controller.filteredProducts[index];
               return OpenContainerWrapper(

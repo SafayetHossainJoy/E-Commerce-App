@@ -210,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Populer',
+                      'Popular Products ',
                       style: GoogleFonts.roboto(
                           color: Color(0xff060608),
                           fontSize: 18,
@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'মুদি পণ্য',
+                      'New Arrivals',
                       style: GoogleFonts.roboto(
                           color: Color(0xff060608),
                           fontSize: 18,
@@ -271,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'নতুন প্রোডাক্ট ',
+                      'Grocery Products ',
                       style: GoogleFonts.roboto(
                           color: Color(0xff060608),
                           fontSize: 18,
