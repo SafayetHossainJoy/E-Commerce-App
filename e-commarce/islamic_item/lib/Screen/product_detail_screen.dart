@@ -1,19 +1,53 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:islamic_item/Screen/NavigationScreen.dart';
+import 'package:islamic_item/api/user%20model/pro.dart';
 import 'package:islamic_item/controller/product_controller.dart';
 import 'package:islamic_item/product_model/product.dart';
 import 'package:islamic_item/widget/brand_colors.dart';
 
 final ProductController controller = Get.put(ProductController());
 
-class ProductDetailScreen extends StatelessWidget {
-  final PageController _pageController = PageController(initialPage: 0);
-
+class ProductDetailScreen extends StatefulWidget {
   final Product product;
 
   ProductDetailScreen(this.product, {Key? key}) : super(key: key);
+
+  @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  final PageController _pageController = PageController(initialPage: 0);
+
+  Productget? data;
+  bool isloading = false;
+  @override
+  void initState() {
+    readLocalJson();
+    super.initState();
+  }
+
+  Map<String, dynamic> myMap = Map();
+  readLocalJson() async {
+    isloading = true;
+    print("START");
+    var f = await rootBundle.loadString("assets/emprecord.json");
+    // print("r$f");
+    var data = jsonDecode(f);
+    print("j");
+    // Productget data1 = Productget.fromJson(data);\
+    myMap = data;
+    print("e");
+    setState(() {
+      isloading = false;
+    });
+    print("All Data are $data");
+  }
 
   PreferredSizeWidget _appBar(BuildContext context) {
     return AppBar(
@@ -64,8 +98,8 @@ class ProductDetailScreen extends StatelessWidget {
                         controller: _pageController,
                         itemBuilder: (_, index) {
                           return Container(
-                            child: Image.asset(
-                              product.images[index],
+                            child: Image.network(
+                              '${myMap["result"]["response"][index]["image_512"]}',
                             ),
                           );
                         },
@@ -81,13 +115,13 @@ class ProductDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.name,
+                      widget.product.name,
                     ),
                     const SizedBox(height: 10),
                     Row(
                       children: [
                         RatingBar.builder(
-                            initialRating: product.rating,
+                            initialRating: widget.product.rating,
                             direction: Axis.horizontal,
                             itemBuilder: (_, index) {
                               return const Icon(Icons.star,
@@ -104,16 +138,16 @@ class ProductDetailScreen extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          product.off != null
-                              ? product.off.toString()
-                              : product.price.toString(),
+                          widget.product.off != null
+                              ? widget.product.off.toString()
+                              : widget.product.price.toString(),
                           //   style: const TextStyle(
                         ),
                         // const SizedBox(width: 3),
                         Visibility(
-                          visible: product.off != null ? true : false,
+                          visible: widget.product.off != null ? true : false,
                           child: Text(
-                            product.price.toString(),
+                            widget.product.price.toString(),
                             style: const TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -130,7 +164,7 @@ class ProductDetailScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     const SizedBox(height: 10),
-                    Text(product.about),
+                    Text(widget.product.about),
                     const SizedBox(height: 20),
                     SizedBox(
                       height: 40,
@@ -138,22 +172,25 @@ class ProductDetailScreen extends StatelessWidget {
                         builder: (ProductController controller) {
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: controller.sizeType(product).length,
+                            itemCount:
+                                controller.sizeType(widget.product).length,
                             itemBuilder: (_, index) {
                               return InkWell(
                                 onTap: () {
                                   controller.switchBetweenProductSizes(
-                                      product, index);
+                                      widget.product, index);
                                 },
                                 child: Container(
                                   margin:
                                       const EdgeInsets.only(right: 5, left: 5),
                                   alignment: Alignment.center,
-                                  width:
-                                      controller.isNominal(product) ? 40 : 70,
+                                  width: controller.isNominal(widget.product)
+                                      ? 40
+                                      : 70,
                                   decoration: BoxDecoration(
                                       color: controller
-                                                  .sizeType(product)[index]
+                                                  .sizeType(
+                                                      widget.product)[index]
                                                   .isSelected ==
                                               false
                                           ? Colors.white
@@ -165,7 +202,7 @@ class ProductDetailScreen extends StatelessWidget {
                                     child: Text(
                                       //Map<String,bool>
                                       controller
-                                          .sizeType(product)[index]
+                                          .sizeType(widget.product)[index]
                                           .numerical,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w500,
@@ -184,8 +221,8 @@ class ProductDetailScreen extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         child: const Text("Add to cart"),
-                        onPressed: product.isAvailable
-                            ? () => controller.addToCart(product)
+                        onPressed: widget.product.isAvailable
+                            ? () => controller.addToCart(widget.product)
                             : null,
                       ),
                     )

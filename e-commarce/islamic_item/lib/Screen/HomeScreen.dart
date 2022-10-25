@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
-                  icon: Icon(Icons.arrow_back_ios_rounded))),
+                  icon: Icon(Icons.menu))),
           elevation: 0,
           title: CusSearchBar,
           shape:
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             textInputAction: TextInputAction.go,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: "Search Item"),
+                                hintText: "Search Items"),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         } else {
                           this.CusIcon = Icon(Icons.search);
                           this.CusSearchBar = Text(
-                            "Islamic Item",
+                            "Search Items",
                             style: TextStyle(color: Colors.black),
                           );
                         }

@@ -50,7 +50,8 @@ class _PopItemListState extends State<PopItemList> {
         height: size.height * 0.35,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: myMap["result"]["response"].length,
+            itemCount: 50,
+            //itemCount: myMap["result"]["response"].length,
             itemBuilder: (context, index) {
               Product product = controller.filteredProducts[index];
               return OpenContainerWrapper(
@@ -94,7 +95,7 @@ class _PopItemListState extends State<PopItemList> {
                           Align(
                             alignment: Alignment.center,
                             child: Image.network(
-                                '$data["result"]["response"][index]["image_128"]',
+                                '${myMap["result"]["response"][index]["image_256"]}',
                                 width: size.width * 0.32,
                                 height: size.height * 0.16),
                           ),
