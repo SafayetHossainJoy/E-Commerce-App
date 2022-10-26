@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_item/Menus/AboutUs.dart';
 
 class drawer extends StatelessWidget {
   const drawer({
@@ -22,19 +23,40 @@ class drawer extends StatelessWidget {
               child: Image(image: AssetImage("images/logo-modified.png"))),
           //Child tile of drawer with specified title
           ListTile(
-            title: const Text('Home'),
+            title: const Text('About Us'),
             //To perform action on tapping at tile
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => About_Us()));
             },
           ),
           divider,
           ListTile(
-            title: const Text('Categories'),
+            title: const Text('Contact Us'),
+            //To perform action on tapping at tile
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => About_Us()));
             },
           ),
+          divider,
+          ListTile(
+            title: const Text('Terms and Conditions'),
+            //To perform action on tapping at tile
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => About_Us()));
+            },
+          ),
+          /*divider,
+           ListTile(
+            title: const Text(' Policy'),
+            //To perform action on tapping at tile
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => About_Us()));
+            },
+          ),*/
           divider,
           ListTile(
             title: const Text('Review'),
@@ -58,49 +80,7 @@ class drawer extends StatelessWidget {
           ),
           divider,
           ListTile(
-            title: const Text('Add Product'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Kids'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Men'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Furniture'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Women'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Animals'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Toys'),
+            title: const Text('Share'),
             onTap: () {
               Navigator.pop(context);
             },
