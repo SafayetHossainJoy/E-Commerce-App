@@ -14,7 +14,7 @@ class _Contact_UsState extends State<Contact_Us> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: ContactUsBottomAppBar(
-        companyName: 'Islamic Item',
+        companyName: 'Xsellence Bangladesh Limited',
         textColor: Colors.white,
         backgroundColor: Colors.teal.shade300,
         email: 'info@islamicitem.com',
