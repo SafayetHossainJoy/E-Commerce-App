@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_item/Menus/AboutUs.dart';
+import 'package:islamic_item/Menus/ContactUs.dart';
+import 'package:islamic_item/Menus/ReviewAndFeedback.dart';
+import 'package:islamic_item/Menus/TermAndCondition.dart';
 
 class drawer extends StatelessWidget {
   const drawer({
@@ -32,11 +35,12 @@ class drawer extends StatelessWidget {
           ),
           divider,
           ListTile(
+            iconColor: Colors.teal,
             title: const Text('Contact Us'),
             //To perform action on tapping at tile
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => About_Us()));
+                  .push(MaterialPageRoute(builder: (context) => Contact_Us()));
             },
           ),
           divider,
@@ -44,8 +48,8 @@ class drawer extends StatelessWidget {
             title: const Text('Terms and Conditions'),
             //To perform action on tapping at tile
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => About_Us()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TermsAndConditions()));
             },
           ),
           /*divider,
@@ -59,23 +63,10 @@ class drawer extends StatelessWidget {
           ),*/
           divider,
           ListTile(
-            title: const Text('Review'),
+            title: const Text('Review and Feedback'),
             onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Products'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          divider,
-          ListTile(
-            title: const Text('Feedback'),
-            onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Review()));
             },
           ),
           divider,
